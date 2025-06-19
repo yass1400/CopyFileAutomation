@@ -11,13 +11,13 @@ class FileExfiltrator {
     public:
     FileExfiltrator(const fs::path& target, const fs::path& destination, const std::string& extension);
 
-    fs::path getTarget() const {
-        return this->target;
+    fs::path getSource() const {
+        return this->source;
     }
-    void scanner(const fs::path& dir);
+    void executor(const fs::path& dir);
 
     private:
-    fs::path target;
+    fs::path source;
     fs::path destination;
     std::string extension;
 };
